@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+  <style>
+    .container {
+      width: 350px;
+      height: 700px;
+      position: relative;
+      margin: auto;
+    }
+
+    .item {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-image: url("front.png");
+      transition: all 1s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function rnd(n, m) {
+      return parseInt(Math.random() * (m - n) + n);
+    }
+    $(document).ready(function() {
+      var divCX = $(".container")[0].offsetWidth / 2; //容器的中心点
+      var divCY = $(".container")[0].offsetHeight / 2; //容器的中心点
+      for (var i = 0; i < 14; i++) {
+        for (var j = 0; j < 7; j++) {
+          var $item = $("<div></div>")
+          $item.addClass("item")
+          $item.css({
+            "left": 50 * j + "px",
+            "top": 50 * i + "px",
+            "background-position": (-50 * j) + "px" + " " + (-50 * i) + "px",
+            "transform": 'perspective(800px) translate3d(' + ((i - 3.5) * 50) + 'px, ' + ((7 - j) * 50) + 'px, 600px) rotateY(' + rnd(-180, 180) + 'deg) rotateX(' + rnd(-180, 180) + 'deg) scale(2,2)',
+            "opacity": 0
+          })
+
+          $(".container").append($item)
+        }
+      }
+
+      setTimeout(function(){
+        $(".item").css({
+          "opacity": 1,
+          "transform": ""
+        })
+      }, 2000)
+
+
+    })
+  </script>
+</body>
+
+
+</html>
